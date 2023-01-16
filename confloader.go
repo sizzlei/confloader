@@ -13,7 +13,7 @@ type Param struct {
 }
 
 type Conf struct {
-	ConfId		string				`yaml:"Config_id"`
+	ConfId		string				`yaml:"ConfigId"`
 	Conf 		map[string]string 	`yaml:"Conf"`
 }
 
