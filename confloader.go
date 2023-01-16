@@ -64,3 +64,12 @@ func (p Param) Keyload(k string) map[string]string {
 	return c
 
 }
+
+func (p Param) Conflist() []string {
+	var cl []string 
+	for _, v := range p.Param {
+		cl = append(cl,v.ConfId)
+	}
+
+	return cl
+}

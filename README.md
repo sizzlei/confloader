@@ -31,16 +31,24 @@ Param:
 ```
 
 ## Function
-현재 2가지 함수를 지원합니다. 
+confloader에서 사용가능한 함수입니다.
 ### FileLoader
 ```
 func FileLoader(p string) (Param, error)
 ```
+Yaml File을 읽고 Parameter를 반환합니다. 
 - p : File Path (ex. ../etc/conf/fileconf.yaml)
 
 ### AWSParamLoader
 ```
 func AWSParamLoader(r string, k string)  (Param, error)
 ```
+AWS SSM Parameter Store를 읽고 Parameter를 반환합니다.
 - r : region code (ex. ap-northeast-2   )
 - k : aws parameter store Key name
+
+### Conflist
+```
+func (p Param) Conflist() []string 
+```
+Config에 정의된 Conf Id Aray를 반환 합니다. 
