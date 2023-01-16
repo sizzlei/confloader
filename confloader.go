@@ -52,3 +52,15 @@ func AWSParamLoader(r string, k string)  (Param, error) {
 
 	return c, nil
 }
+
+func (p Param) Keyload(k string) map[string]string {
+	var c map[string]string
+	for i, v := range p.Param {
+		if v.ConfId == k {
+			c = make(map[string]string)
+			c = p.Param[i].Conf
+		}
+	}
+	return c
+
+}
