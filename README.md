@@ -14,7 +14,7 @@ go get github.com/sizzlei/confloader
 Configure 파일 또는 Parameter Store의 내용은 아래 규격을 기준으로 합니다.
 ```yaml
 Param:  
-  - Config_id : {Configure Name}
+  - ConfigId : {Configure Name}
     Conf:
       {conf_name} : {conf_value}
       {conf_name} : {conf_value}
@@ -22,7 +22,7 @@ Param:
       .
       .
 
-  - Config_id : {Configure Name}
+  - ConfigId : {Configure Name}
     Conf:
       {conf_name} : {conf_value}
       .
