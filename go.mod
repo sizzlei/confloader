@@ -1,4 +1,4 @@
-module confloader
+module github.com/sizzlei/confloader
 
 go 1.17
 
