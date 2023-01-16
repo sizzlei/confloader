@@ -51,4 +51,4 @@ AWS SSM Parameter Store를 읽고 Parameter를 반환합니다.
 ```
 func (p Param) Conflist() []string 
 ```
-Config에 정의된 Conf Id Aray를 반환 합니다. 
+Config에 정의된 ConfigId를 Array로 반환 합니다. 
