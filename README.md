@@ -29,26 +29,15 @@ Param:
       .
       .
 ```
+## Struct 
+Struct는 Interface로 로드합니다. 
+```go
+  type Param struct {
+    Param		[]Conf 				`yaml:"Param"`
+  }
 
-## Function
-confloader에서 사용가능한 함수입니다.
-### FileLoader
+  type Conf struct {
+    ConfId		string					`yaml:"ConfigId"`
+    Conf 		map[string]interface{} 	`yaml:"Conf"`
+  }
 ```
-func FileLoader(p string) (Param, error)
-```
-Yaml File을 읽고 Parameter를 반환합니다. 
-- p : File Path (ex. ../etc/conf/fileconf.yaml)
-
-### AWSParamLoader
-```
-func AWSParamLoader(r string, k string)  (Param, error)
-```
-AWS SSM Parameter Store를 읽고 Parameter를 반환합니다.
-- r : region code (ex. ap-northeast-2   )
-- k : aws parameter store Key name
-
-### Conflist
-```
-func (p Param) Conflist() []string 
-```
-Config에 정의된 ConfigId를 Array로 반환 합니다. 
