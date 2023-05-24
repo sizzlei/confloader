@@ -13,8 +13,8 @@ type Param struct {
 }
 
 type Conf struct {
-	ConfId		string				`yaml:"ConfigId"`
-	Conf 		map[string]string 	`yaml:"Conf"`
+	ConfId		string					`yaml:"ConfigId"`
+	Conf 		map[string]interface{} 	`yaml:"Conf"`
 }
 
 func FileLoader(p string) (Param, error) {
@@ -53,16 +53,15 @@ func AWSParamLoader(r string, k string)  (Param, error) {
 	return c, nil
 }
 
-func (p Param) Keyload(k string) map[string]string {
-	var c map[string]string
+func (p Param) Keyload(k string) map[string]interface{} {
+	var c map[string]interface{}
 	for i, v := range p.Param {
 		if v.ConfId == k {
-			c = make(map[string]string)
+			c = make(map[string]interface{})
 			c = p.Param[i].Conf
 		}
 	}
 	return c
-
 }
 
 func (p Param) Conflist() []string {
@@ -72,4 +71,13 @@ func (p Param) Conflist() []string {
 	}
 
 	return cl
+}
+
+func InterfaceToSlice(i interface{}) []string {
+	var returnSlice []string
+	for _, v := range i.([]interface{}) {
+		returnSlice = append(returnSlice,v.(string))
+	}
+
+	return returnSlice
 }
