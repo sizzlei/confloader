@@ -31,3 +31,12 @@ func TestConvertSlice(t *testing.T) {
 
 	fmt.Println(z)
 }
+
+// func TestSecretLoad(t *testing.T) {
+// 	data, err := cnf.AWSSecretLoader("{region}","{KeyName}")
+// 	if err != nil {
+// 		panic(err)
+// 	}
+
+// 	fmt.Println(data["username"].(string))
+// }

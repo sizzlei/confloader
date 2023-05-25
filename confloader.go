@@ -6,6 +6,8 @@ import (
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/session"
 	"github.com/aws/aws-sdk-go/service/ssm"
+	"github.com/aws/aws-sdk-go/service/secretsmanager"
+	"encoding/json"
 )
 
 type Param struct {
@@ -80,4 +82,29 @@ func InterfaceToSlice(i interface{}) []string {
 	}
 
 	return returnSlice
+}
+
+func AWSSecretLoader(r string,k string) (map[string]interface{}, error) {
+	// Declare Return Data
+	data := make(map[string]interface{})
+
+	// Create Session
+	gs := session.Must(session.NewSession())
+	secs := secretsmanager.New(gs, aws.NewConfig().WithRegion(r))
+
+	// Get Keyvalue
+	secv, err := secs.GetSecretValue(&secretsmanager.GetSecretValueInput{
+		SecretId: aws.String(k),
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	// Unmarshal
+	err = json.Unmarshal([]byte(*secv.SecretString),&data)
+	if err != nil {
+		return nil, err
+	}
+
+	return data, nil
 }
